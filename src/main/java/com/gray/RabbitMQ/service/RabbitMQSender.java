@@ -1,4 +1,5 @@
 package com.gray.RabbitMQ.service;
+import com.gray.RabbitMQ.model.Company;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,17 +11,23 @@ import com.gray.RabbitMQ.model.Employee;
 public class RabbitMQSender {
 
     @Autowired
-    private AmqpTemplate rabbitTemplate;
+    AmqpTemplate rabbitTemplate;
 
     @Value("${gray.rabbitmq.exchange}")
-    private String exchange;
+    String exchange;
+    @Value("${gray.rabbitmq.employeeRoutingKey}")
+    String employeeRoutingKey;
+    @Value("${gray.rabbitmq.companyRoutingKey}")
+    String companyRoutingKey;
 
-    @Value("${gray.rabbitmq.routingkey}")
-    private String routingkey;
 
     public void send(Employee employee) {
-        rabbitTemplate.convertAndSend(exchange, routingkey, employee);
-        System.out.println("Send msg = " + employee);
+        rabbitTemplate.convertAndSend(exchange, employeeRoutingKey, employee);
+        System.out.println("Send employee = " + employee);
+    }
 
+    public void send(Company company) {
+        rabbitTemplate.convertAndSend(exchange, companyRoutingKey, company);
+        System.out.println("Send company = " + company);
     }
 }

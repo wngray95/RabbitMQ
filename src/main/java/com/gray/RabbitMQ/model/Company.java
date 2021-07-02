@@ -7,16 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
-
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Employee.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Company.class)
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-public class Employee implements Serializable {
+public class Company {
 
-    private String empName;
-    private String empId;
-    private String position;
+    private String name;
+    private String address;
+
 }
