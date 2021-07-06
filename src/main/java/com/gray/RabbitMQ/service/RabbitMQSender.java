@@ -31,3 +31,10 @@ public class RabbitMQSender {
         System.out.println("Send company = " + company);
     }
 }
+
+/* TODO
+    1. Dockerize the apps into separate containers(producer, consumer, psql, RabbitMQ)
+    2. Orchestrate with kubernetes
+    3. Create Mock api to generate consistent load for testing the queue throughput
+
+ */
